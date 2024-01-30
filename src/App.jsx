@@ -18,7 +18,7 @@ const AppContent = () => {
 	const [loadingSearch, setLoadingSearch] = useState(false);
 	const onSearch = (searchType, searchData) => {
 		setLoadingSearch(true);
-		getApiData(searchType, searchData, instance).then((apiData) => {
+		getApiData(searchType, searchData, instance, accounts).then((apiData) => {
 			setApiData(apiData);
 			setLoadingSearch(false);
 		});
@@ -62,7 +62,6 @@ const AppContent = () => {
 				loading={loadingSearch}
 			/>
 			<APIData data={apiData}></APIData>
-			<button type={"button"} onClick={CallAPI}>Call api</button>
 		</>
 	);
 };

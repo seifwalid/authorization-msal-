@@ -1,26 +1,21 @@
+import {loginRequest} from "./authConfig";
+
 const endpoint = {
-    'ip': 'checkIP',
+    'ip': 'CheckIP',
     'anid': 'CheckAnid',
     'location': 'CheckLocation',
-    'adid': 'checkAdid',
-    'idfa': 'checkAdid'
+    'adid': 'CheckAdid',
+    'idfa': 'CheckAdid'
 }
 
-export function getAuth(instance, accounts) {
-    const secret = sessionStorage.getItem('idToken')
-    console.log("secret from getAuth: ", secret)
-
-    // instance.acquireTokenSilent({
-    //     ...loginRequest,
-    //     account: accounts[0]
-    // }).then((response) => {
-    //     console.log(response.accessToken);
-    //     console.log(response.idToken);
-    // }
-    //
+export async function getAuth(instance, accounts) {
+    return (await instance.acquireTokenSilent({
+        ...loginRequest,
+        account: accounts[0]
+    })).idToken
 }
 
-export async function getApiData(searchType, searchData) {
+export async function getApiData(searchType, searchData, instance, accounts) {
     if (searchType === 'adid')
         searchData.DeviceIdType = 'ADID'
     else if (searchType === 'idfa') {
@@ -29,10 +24,14 @@ export async function getApiData(searchType, searchData) {
         searchData.DeviceIdType = 'userIDFA'
     }
 
-    console.log(searchData)
-    getAuth()
+    console.log('searching for banned device details:', searchData)
+    const auth = await getAuth(instance, accounts)
+    console.log('Auth header: ', auth)
     const resp = await fetch(`https://banlistlookup.azurewebsites.net/api/${endpoint[searchType]}`, {
-         method: 'POST', body: JSON.stringify(searchData)
+        headers: {
+            'Authorization': auth
+        },
+        method: 'POST', body: JSON.stringify(searchData)
     })
 
     console.log(resp)
