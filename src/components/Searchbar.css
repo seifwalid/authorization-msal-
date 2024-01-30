@@ -1,0 +1,23 @@
+.searchbar-container {
+	width: fit-content;
+	margin: 1rem auto;
+	background: #fff;
+	box-shadow: 2px 2px 4px 1px #00000033;
+	padding: 0.8rem 0.8rem;
+	border-radius: 2rem;
+	overflow: hidden;
+}
+
+.searchbar-container input:first-child {
+	border-bottom-left-radius: 2rem;
+	border-top-left-radius: 2rem;
+	padding: 0.3rem 0.6rem;
+}
+
+.searchbar-container button {
+	border-top-right-radius: 2rem;
+	border-bottom-right-radius: 2rem;
+}
+.searchbar-container > * {
+	margin-right: 5px;
+}

@@ -1,0 +1,15 @@
+.data-table {
+	margin: auto;
+	text-align: left;
+}
+.data-table th {
+	text-transform: uppercase;
+}
+.data-table td,
+.data-table th {
+	padding-right: 2rem;
+}
+.data-table td:last-child,
+.data-table th:last-child {
+	padding-right: 0;
+}
