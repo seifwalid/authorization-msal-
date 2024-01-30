@@ -7,6 +7,7 @@ import {APIData} from "./components/APIData";
 import "./styles/App.css";
 import Searchbar from "./components/Searchbar";
 import {getApiData} from "./api.js";
+import SpeechBubble from "./components/SpeechBubble";
 
 /**
  * Renders name of the signed-in user and a button to retrieve data from an API
@@ -62,6 +63,7 @@ const AppContent = () => {
 				loading={loadingSearch}
 			/>
 			<APIData data={apiData}></APIData>
+			<SpeechBubble/>
 		</>
 	);
 };
