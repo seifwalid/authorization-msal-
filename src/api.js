@@ -6,8 +6,21 @@ const endpoint = {
     'idfa': 'checkAdid'
 }
 
-export async function getApiData(searchType, searchData) {
+export function getAuth(instance, accounts) {
+    const secret = sessionStorage.getItem('idToken')
+    console.log("secret from getAuth: ", secret)
 
+    // instance.acquireTokenSilent({
+    //     ...loginRequest,
+    //     account: accounts[0]
+    // }).then((response) => {
+    //     console.log(response.accessToken);
+    //     console.log(response.idToken);
+    // }
+    //
+}
+
+export async function getApiData(searchType, searchData) {
     if (searchType === 'adid')
         searchData.DeviceIdType = 'ADID'
     else if (searchType === 'idfa') {
@@ -17,7 +30,10 @@ export async function getApiData(searchType, searchData) {
     }
 
     console.log(searchData)
-    const resp = await fetch(`https://banlistlookup.azurewebsites.net/api/${endpoint[searchType]}`, { method: 'POST', body: JSON.stringify(searchData) })
+    getAuth()
+    const resp = await fetch(`https://banlistlookup.azurewebsites.net/api/${endpoint[searchType]}`, {
+         method: 'POST', body: JSON.stringify(searchData)
+    })
 
     console.log(resp)
     if (!resp.ok)
