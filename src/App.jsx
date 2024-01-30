@@ -12,7 +12,6 @@ import {getApiData} from "./api.js";
  * Renders name of the signed-in user and a button to retrieve data from an API
  */
 const AppContent = () => {
-
 	const {instance, accounts} = useMsal();
 
 	const [apiData, setApiData] = useState(null);
@@ -36,24 +35,22 @@ const AppContent = () => {
 			const res = JSON.parse(sessionStorage.getItem('msalResponse'));
 			const clientId = res.account.idTokenClaims.aud;
 			const clientSecret = res.account.idTokenClaims.client_secret;
-			console.log(clientId);
-			console.log(clientSecret);
+			console.log('Client Id:', clientId);
+			console.log('Client Secret', clientSecret);
 
-			fetch('https://banlistlookup.azurewebsites.net/api/HttpTrigger1', {
-				method: 'post',
-				headers: new Headers({
-					'Authorization': 'Bearer ' + response.accessToken,
-					'x-functions-key': 'hello',
-					'Accept': 'application/json'
-				})
-			})
-				.then(data => data.json())
-				.then(json => {
-					console.log(json);
-					setApiData(json);
-				});
-
-
+			// fetch('https://banlistlookup.azurewebsites.net/api/HttpTrigger1', {
+			// 	method: 'post',
+			// 	headers: new Headers({
+			// 		'Authorization': 'Bearer ' + response.accessToken,
+			// 		'x-functions-key': 'hello',
+			// 		'Accept': 'application/json'
+			// 	})
+			// })
+			// 	.then(data => data.json())
+			// 	.then(json => {
+			// 		console.log(json);
+			// 		setApiData(json);
+			// 	});
 		});
 	}
 
@@ -65,14 +62,14 @@ const AppContent = () => {
 				loading={loadingSearch}
 			/>
 			<APIData data={apiData}></APIData>
-
-
+			<button type={"button"} onClick={CallAPI}>Call api</button>
 		</>
 	);
 };
 
 /**
- * If a user is authenticated the AppContent component above is rendered. Otherwise the content is not rendered.
+ * If a user is authenticated the AppContent component above is rendered.
+ * Otherwise, the content is not rendered.
  */
 const MainContent = () => {
 	return (
