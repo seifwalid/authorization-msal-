@@ -8,11 +8,17 @@ const endpoint = {
     'idfa': 'CheckAdid'
 }
 
-export async function getAuth(instance, accounts) {
-    return (await instance.acquireTokenSilent({
+async function getAuth(instance, accounts) {
+
+
+    const response = (await instance.acquireTokenSilent({
         ...loginRequest,
         account: accounts[0]
-    })).idToken
+    }))
+
+    console.log('response: ', response)
+
+    return response.idToken
 }
 
 export async function getApiData(searchType, searchData, instance, accounts) {

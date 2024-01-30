@@ -13,6 +13,7 @@ function Searchbar({ onSubmit, loading }) {
 
 	return (
 		<form className="d-flex gap-1 searchbar-container p-2">
+			<h3 className={'me-3'}>Ban-list Lookup</h3>
 			{searchType === "location" ? (
 				<>
 					<input
