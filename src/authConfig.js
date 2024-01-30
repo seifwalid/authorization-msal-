@@ -14,7 +14,8 @@ export const msalConfig = {
     auth: {
         clientId: "b200e2b6-6cb8-4f58-ab30-66b77b77867e",
         authority: "https://login.microsoftonline.com/72f988bf-86f1-41af-91ab-2d7cd011db47", // This is a URL (e.g. https://login.microsoftonline.com/{your tenant ID})
-        redirectUri: "https://banlistadmin.azurewebsites.net"
+        redirectUri: "http://localhost:3000"
+        // redirectUri: "https://banlistadmin.azurewebsites.net"
     },
     cache: {
         cacheLocation: "sessionStorage", // This configures where your cache will be stored
