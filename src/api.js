@@ -8,15 +8,20 @@ const endpoint = {
     'idfa': 'CheckAdid'
 }
 
+function isTokenExpired(expirationTime) {
+    const now = new Date();
+    const expirationDate = new Date(expirationTime);
+    return now > expirationDate;
+}
+
 async function getAuth(instance, accounts) {
-
-
     const response = (await instance.acquireTokenSilent({
         ...loginRequest,
         account: accounts[0]
     }))
 
-    console.log('response: ', response)
+    if(isTokenExpired(response.expiresOn))
+       return (await instance.acquireTokenPopup()).idToken
 
     return response.idToken
 }

@@ -16,13 +16,13 @@ export const APIData = ({data}) => {
 
 	return (
 		<table className="data-table">
+			<tbody>
 			<tr>
 				{Object.keys(idData).map((h) => (
 					<th key={h}>{h}</th>
 				))}
 				<th>status</th>
 			</tr>
-			<tbody>
 				<tr>
 					{Object.keys(idData).map((k) => (
 						<td key={k}>{idData[k]}</td>
