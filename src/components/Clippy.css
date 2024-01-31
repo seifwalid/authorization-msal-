@@ -20,6 +20,12 @@
 	margin-top: -15px;
 	height: 200px;
 }
+.clippy.hidden {
+	animation-name: slide-out;
+	animation-duration: 1.5s;
+	animation-delay: 0.2s;
+	animation-fill-mode: both;
+}
 
 @keyframes slide-in {
 	0% {
@@ -27,5 +33,14 @@
 	}
 	100% {
 		transform: translateY(0%);
+	}
+}
+
+@keyframes slide-out {
+	0% {
+		transform: translateY(0%);
+	}
+	100% {
+		transform: translateY(200%);
 	}
 }
