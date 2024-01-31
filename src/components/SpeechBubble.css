@@ -1,0 +1,58 @@
+.speech-bubble,
+.speech-bubble * {
+	box-sizing: border-box;
+}
+
+.speech-bubble {
+	--bbColor: white;
+	--bbArrowSize: 2rem;
+	--bbBorderRadius: 0.25rem;
+	--bbPadding: 1rem;
+	--bbGlow: 0 0 1px black;
+	background: var(--bbColor);
+	border-radius: var(--bbBorderRadius);
+	padding: var(--bbPadding);
+	filter: drop-shadow(var(--bbGlow));
+	position: relative;
+	width: fit-content;
+}
+
+.speech-bubble::before {
+	content: "";
+	position: absolute;
+	background: var(--bbColor);
+}
+
+.speech-bubble {
+	margin: auto;
+	margin-bottom: var(--bbArrowSize);
+
+	max-width: 80%;
+}
+.speech-bubble::before {
+	top: calc(100% - 2px);
+
+	--width: calc(var(--bbArrowSize) / 2 * 3);
+	height: var(--bbArrowSize);
+	width: var(--width);
+
+	left: calc(50% - var(--width) / 2);
+	clip-path: polygon(12.5% 0, 87.5% 0, 50% 100%);
+}
+
+@media screen and (min-width: 650px) {
+	.speech-bubble::before {
+		--width: calc(var(--bbArrowSize) / 2 * 3);
+		height: var(--bbArrowSize);
+		width: var(--width);
+		left: 1rem;
+		clip-path: polygon(25% 0, 100% 0, 0% 100%);
+	}
+
+	.speech-bubble {
+		position: relative;
+		max-width: 300px;
+		left: 50%;
+		margin-left: 10px;
+	}
+}
